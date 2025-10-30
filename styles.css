@@ -1,0 +1,194 @@
+/* Prompt Library - Developer Theme with Light/Dark mode */
+:root {
+  --bg: #0b0f14;
+  --panel: #0f1520;
+  --card: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #1f2937;
+  --accent: #7c3aed; /* purple */
+  --accent-contrast: #ffffff;
+  --shadow: 0 10px 25px rgba(0,0,0,0.35);
+  --radius: 14px;
+  --focus: 0 0 0 3px rgba(124,58,237,0.45);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f8fb;
+    --panel: #ffffff;
+    --card: #ffffff;
+    --text: #0b1020;
+    --muted: #475569;
+    --border: #e5e7eb;
+    --accent: #6d28d9;
+    --accent-contrast: #ffffff;
+    --shadow: 0 10px 30px rgba(2,6,23,0.08);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 800px at 80% -10%, rgba(124,58,237,0.08), transparent 60%), var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5rem; }
+h1 { font-weight: 800; letter-spacing: -0.02em; font-size: clamp(1.6rem, 2.5vw, 2rem); }
+h2 { font-weight: 700; font-size: 1.1rem; color: var(--muted); }
+h3 { font-weight: 700; font-size: 1rem; }
+.subtitle { color: var(--muted); margin-top: -0.25rem; }
+
+.container { max-width: 980px; padding: 1.5rem; margin: 0 auto; }
+.footer { opacity: 0.8; font-size: 0.9rem; padding-bottom: 3rem; }
+
+.card {
+  background: linear-gradient(180deg, var(--panel), var(--card));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.form-card { padding: 1.25rem; }
+
+.field { display: grid; gap: 0.5rem; margin-bottom: 1rem; }
+.field-inline { grid-auto-flow: column; grid-template-columns: auto 1fr; align-items: center; gap: 0.75rem; }
+label { font-size: 0.9rem; color: var(--muted); }
+input, textarea {
+  width: 100%;
+  padding: 0.85rem 0.95rem;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: box-shadow .15s ease, border-color .15s ease, background .15s ease;
+}
+input::placeholder, textarea::placeholder { color: color-mix(in oklab, var(--muted) 80%, transparent); }
+input:focus, textarea:focus { border-color: color-mix(in oklab, var(--accent) 45%, var(--border)); box-shadow: var(--focus); }
+.checkbox { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--muted); }
+.checkbox input[type="checkbox"] { width: 1.05rem; height: 1.05rem; accent-color: var(--accent); }
+.form-error { color: #ef4444; font-size: 0.9rem; min-height: 1.2rem; }
+
+.actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn {
+  appearance: none; border: 1px solid var(--border); background: transparent; color: var(--text);
+  padding: 0.7rem 1rem; border-radius: 12px; cursor: pointer; font-weight: 600;
+  transition: transform .06s ease, background .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.btn:hover { background: color-mix(in oklab, var(--card) 70%, var(--accent) 6%); }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--accent); border-color: color-mix(in oklab, var(--accent) 75%, black); color: var(--accent-contrast); }
+.btn.primary:hover { filter: brightness(1.08); }
+
+.list-header { display: flex; align-items: baseline; justify-content: space-between; margin: 1.25rem 0 0.75rem; }
+.muted { color: var(--muted); }
+.toolbar { display: inline-flex; gap: 0.5rem; align-items: center; }
+.toolbar select { padding: 0.45rem 0.6rem; background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 10px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.prompt-card { padding: 1rem; display: grid; gap: 0.5rem; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.preview { color: var(--muted); margin: 0.25rem 0 0; }
+
+/* Metadata component */
+.metadata { display: grid; gap: 0.35rem; margin-top: 0.25rem; font-size: 0.9rem; }
+.metadata-row { display: flex; gap: 0.5rem; align-items: baseline; flex-wrap: wrap; }
+.metadata-label { color: var(--muted); min-width: 80px; }
+.badge { display: inline-flex; align-items: center; gap: 0.35rem; border: 1px solid var(--border); padding: 0.15rem 0.5rem; border-radius: 999px; font-weight: 600; font-size: 0.8rem; }
+.badge.conf-high { color: #16a34a; border-color: color-mix(in oklab, #16a34a 35%, var(--border)); background: color-mix(in oklab, #16a34a 12%, transparent); }
+.badge.conf-medium { color: #ca8a04; border-color: color-mix(in oklab, #ca8a04 35%, var(--border)); background: color-mix(in oklab, #ca8a04 12%, transparent); }
+.badge.conf-low { color: #dc2626; border-color: color-mix(in oklab, #dc2626 35%, var(--border)); background: color-mix(in oklab, #dc2626 12%, transparent); }
+.metadata-times { color: var(--muted); display: grid; gap: 0.15rem; }
+.metadata-tokens { display: flex; align-items: center; gap: 0.5rem; }
+
+.icon-btn {
+  appearance: none; border: 1px solid var(--border); background: transparent; color: var(--muted);
+  padding: 0.45rem 0.65rem; border-radius: 10px; cursor: pointer; font-weight: 650; font-size: 0.85rem;
+}
+.icon-btn:hover { color: #ef4444; border-color: color-mix(in oklab, #ef4444 40%, var(--border)); background: color-mix(in oklab, #ef4444 10%, transparent); }
+.icon-btn.danger { color: #ef4444; border-color: color-mix(in oklab, #ef4444 40%, var(--border)); }
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  padding: 2rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+/* Better spacing on small screens */
+@media (max-width: 520px) {
+  .container { padding: 1rem; }
+  .form-card { padding: 1rem; }
+}
+
+/* Rating component */
+:root { --rating-star: #fbbf24; /* amber-400 */ }
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+.rating .star {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: color-mix(in oklab, var(--muted) 85%, transparent);
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0.15rem;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.rating .star:hover,
+.rating .star:focus { outline: none; box-shadow: var(--focus); }
+.rating .star.filled { color: var(--rating-star); }
+.rating .star.previewed { color: color-mix(in oklab, var(--rating-star) 85%, white); }
+
+.rating .clear-rating {
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 8px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.rating .clear-rating:hover {
+  color: #ef4444;
+  border-color: color-mix(in oklab, #ef4444 40%, var(--border));
+  background: color-mix(in oklab, #ef4444 10%, transparent);
+}
+
+/* Notes component */
+.notes { margin-top: 0.25rem; display: grid; gap: 0.5rem; }
+.notes-title { margin: 0.25rem 0 0; font-size: 0.9rem; color: var(--muted); }
+.notes-list { display: grid; gap: 0.5rem; }
+.note-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; padding: 0.5rem; border: 1px solid var(--border); border-radius: 10px; background: color-mix(in oklab, var(--card) 80%, transparent); }
+.note-text { white-space: pre-wrap; }
+.notes-actions { display: flex; gap: 0.35rem; }
+.notes-form { display: grid; gap: 0.35rem; }
+.notes-label { font-size: 0.85rem; color: var(--muted); }
+.note-input, .note-edit { width: 100%; padding: 0.6rem 0.7rem; background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 10px; }
+.note-input:focus, .note-edit:focus { outline: none; border-color: color-mix(in oklab, var(--accent) 45%, var(--border)); box-shadow: var(--focus); }
+.notes-error { color: #ef4444; font-size: 0.85rem; }
+
+/* Prompt edit form */
+.prompt-card.editing { outline: 1px dashed color-mix(in oklab, var(--accent) 40%, var(--border)); }
+.prompt-edit { display: grid; gap: 0.5rem; margin-top: 0.25rem; }
+.prompt-edit .field { margin: 0; }
+.prompt-edit .prompt-error { color: #ef4444; font-size: 0.85rem; min-height: 1.1rem; }
+.prompt-edit .actions { justify-content: flex-start; }
